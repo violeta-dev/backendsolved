@@ -1,0 +1,23 @@
+{
+  "name": "nodeapi",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node ./bin/www",
+    "dev": "cross-env DEBUG=nodeapi:* PORT=3000 NODE_ENV=development nodemon",
+    "init-db": "node ./init-db.js"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "cross-env": "^7.0.2",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "express-validator": "^6.6.0",
+    "http-errors": "~1.6.3",
+    "mongoose": "^5.10.2",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.2"
+  }
+}
