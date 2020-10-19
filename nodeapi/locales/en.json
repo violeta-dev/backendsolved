@@ -1,3 +1,9 @@
 {
-	"Welcome to": "Welcome to"
+	"Welcome to": "Welcome to",
+	"The value is": "The value is",
+	"Hello, my name is {{name}} and my age is {{age}}": "Hello, my name is {{name}} and my age is {{age}}",
+	"Mouse": {
+		"one": "Mouse",
+		"other": "Mice"
+	}
 }

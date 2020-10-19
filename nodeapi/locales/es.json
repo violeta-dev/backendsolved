@@ -1,3 +1,9 @@
 {
-	"Welcome to": "Bienvenido a"
+	"Welcome to": "Bienvenido a",
+	"The value is": "El valor es",
+	"Hello, my name is {{name}} and my age is {{age}}": "Hola, mi nombre es {{name}} y mi edad {{age}}",
+	"Mouse": {
+		"one": "Ratón",
+		"other": "Ratones"
+	}
 }
