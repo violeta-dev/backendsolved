@@ -9,6 +9,8 @@ require('dotenv').config(); // cargar .env, ponerlo en process.env
 var app = require('../app');
 var debug = require('debug')('nodeapi:server');
 var http = require('http');
+const https = require('https');
+const fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
@@ -21,7 +23,12 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+const options = {
+  cert: fs.readFileSync('./certs/example.com+5.pem'),
+  key: fs.readFileSync('./certs/example.com+5-key.pem')
+};
+
+var server = https.createServer(options, app);
 
 /**
  * Listen on provided port, on all network interfaces.
