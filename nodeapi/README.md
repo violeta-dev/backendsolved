@@ -37,6 +37,14 @@ Use in production only in the first deployment.
 npm start
 ```
 
+## Cluster
+
+You can start the service in cluster mode:
+
+```sh
+npm run cluster
+```
+
 ## Development start
 
 ```sh
