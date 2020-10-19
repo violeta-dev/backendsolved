@@ -5,7 +5,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./bin/www",
     "dev": "cross-env DEBUG=nodeapi:* PORT=3000 NODE_ENV=development nodemon",
-    "init-db": "node ./init-db.js"
+    "init-db": "node ./init-db.js",
+    "ngrok": "ngrok http -region=eu 3000"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

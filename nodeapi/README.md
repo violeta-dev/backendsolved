@@ -43,6 +43,12 @@ npm start
 npm run dev
 ```
 
+You can create a tunnel with ngrok (HTTPS)
+
+```sh
+ngrok http -region=eu 3000
+```
+
 ## API Methods
 
 ### List of agents
