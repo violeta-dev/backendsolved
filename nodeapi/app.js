@@ -46,7 +46,8 @@ app.use(i18n.init); // metemos un middleware a express
  * Rutas del website
  */
 
-const loginController = require('./routes/loginController');
+const loginController   = require('./routes/loginController');
+const privadoController = require('./routes/privadoController');
 
 app.use('/',              require('./routes/index'));
 app.use('/services',      require('./routes/services'));
@@ -55,6 +56,7 @@ app.use('/users',         require('./routes/users'));
 // en los siguientes usamos la estructura de controladores
 app.get('/login',         loginController.index);
 app.post('/login',        loginController.post);
+app.get('/privado',       privadoController.index);
 
 /**
  * Rutas del API
