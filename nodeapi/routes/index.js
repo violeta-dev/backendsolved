@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 
   const segundo = (new Date()).getSeconds(); // segundo actual
 
-  res.locals.valor = '<script>alert("inyección de código");</script>';
+  res.locals.valor = '<script>alert("' + res.__('code injection') + '");</script>';
 
   res.locals.condicion = {
     segundo: segundo,

@@ -5,5 +5,7 @@
 	"Mouse": {
 		"one": "Mouse",
 		"other": "Mice"
-	}
+	},
+	"code injection": "code injection",
+	"Are you sure you want to initialize the database? (no)": "Are you sure you want to initialize the database? (no)"
 }

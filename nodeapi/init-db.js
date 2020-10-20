@@ -5,11 +5,12 @@ require('dotenv').config();
 const readline = require('readline');
 const conn = require('./lib/connectMongoose');
 const Agente = require('./models/Agente');
+const i18n = require('./lib/i18nConfigure');
 
 conn.once('open', async () => {
   try {
 
-    const respuesta = await askUser('Estas seguro que quieres inicializar la BD con datos iniciales? (no)');
+    const respuesta = await askUser(i18n.__('Are you sure you want to initialize the database? (no)'));
 
     if (respuesta.toLowerCase() !== 'si') {
       console.log('Proceso abortado.');
