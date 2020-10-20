@@ -7,5 +7,10 @@
 		"other": "Mice"
 	},
 	"code injection": "code injection",
-	"Are you sure you want to initialize the database? (no)": "Are you sure you want to initialize the database? (no)"
+	"Are you sure you want to initialize the database? (no)": "Are you sure you want to initialize the database? (no)",
+	"Home": "Home",
+	"Services": "Services",
+	"Features": "Features",
+	"Contact": "Contact",
+	"Content of services": "Content of services"
 }

@@ -7,5 +7,10 @@
 		"other": "Ratones"
 	},
 	"code injection": "inyección de código",
-	"Are you sure you want to initialize the database? (no)": "Are you sure you want to initialize the database? (no)"
+	"Are you sure you want to initialize the database? (no)": "Are you sure you want to initialize the database? (no)",
+	"Home": "Inicio",
+	"Services": "Servicios",
+	"Features": "Caracteristicas",
+	"Contact": "Contacto",
+	"Content of services": "Contenido de página Servicios"
 }
