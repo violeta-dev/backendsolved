@@ -6,6 +6,7 @@ const readline = require('readline');
 const conn = require('./lib/connectMongoose');
 const Agente = require('./models/Agente');
 const i18n = require('./lib/i18nConfigure');
+const Usuario = require('./models/Usuario');
 
 conn.once('open', async () => {
   try {
@@ -18,7 +19,7 @@ conn.once('open', async () => {
     }
 
     await initAgentes();
-    // await initUsuarios();
+    await initUsuarios();
     // ...
 
     // cerrar la conexión
@@ -44,6 +45,20 @@ async function initAgentes() {
   ]);
   console.log(`Se han creado ${result.length} agentes.`);
 }
+
+async function initUsuarios() {
+  // borrar documentos existentes de la colección
+  console.log('Vaciando colección de usuarios...');
+  await Usuario.deleteMany();
+
+  // cargar los documentos iniciales
+  console.log('Cargando usuarios...');
+  const result = await Usuario.insertMany([
+    { email: 'user@example.com', password: 1234 },
+  ]);
+  console.log(`Se han creado ${result.length} usuarios.`);
+}
+
 
 function askUser(textoPregunta) {
   return new Promise((resolve, reject) => {
