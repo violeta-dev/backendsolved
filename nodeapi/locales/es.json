@@ -12,5 +12,7 @@
 	"Services": "Servicios",
 	"Features": "Caracteristicas",
 	"Contact": "Contacto",
-	"Content of services": "Contenido de página Servicios"
+	"Content of services": "Contenido de página Servicios",
+	"Login": "Login",
+	"Invalid credentials": "Invalid credentials"
 }
