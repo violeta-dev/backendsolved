@@ -43,8 +43,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 /**
  * Rutas del website
  */
-app.use('/',      require('./routes/index'));
-app.use('/users', require('./routes/users'));
+app.use('/',          require('./routes/index'));
+app.use('/services',  require('./routes/services'));
+app.use('/users',     require('./routes/users'));
 
 /**
  * Rutas del API
