@@ -8,7 +8,8 @@ i18n.configure({
   directory: path.join(__dirname, '..', 'locales'),
   defaultLocale: 'en',
   autoReload: true, // recargar ficheros de idioma si cambian
-  syncFiles: true // crear literales en todos los idiomas a la vez
+  syncFiles: true, // crear literales en todos los idiomas a la vez
+  cookie: 'nodeapi-locale',
 });
 
 // por si usamos i18n en script

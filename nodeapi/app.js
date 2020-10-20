@@ -9,10 +9,6 @@ var app = express();
 // conectar a la base de datos
 require('./lib/connectMongoose');
 
-// Setup de i18n
-const i18n = require('./lib/i18nConfigure');
-app.use(i18n.init); // metemos un middleware a express
-
 // lo probamos
 // i18n.setLocale('es');
 // console.log(i18n.__('Welcome to'));
@@ -40,12 +36,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Setup de i18n
+// Recordar que para que funcione la cookie 'nodeapi-locale' debemos inicilizar
+// i18n tras el middleware que lee las cookies
+const i18n = require('./lib/i18nConfigure');
+app.use(i18n.init); // metemos un middleware a express
+
 /**
  * Rutas del website
  */
-app.use('/',          require('./routes/index'));
-app.use('/services',  require('./routes/services'));
-app.use('/users',     require('./routes/users'));
+app.use('/',              require('./routes/index'));
+app.use('/services',      require('./routes/services'));
+app.use('/change-locale', require('./routes/change-locale'));
+app.use('/users',         require('./routes/users'));
 
 /**
  * Rutas del API
