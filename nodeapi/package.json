@@ -10,6 +10,7 @@
     "cluster": "cross-env NODE_ENV=production node ./bin/cluster"
   },
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "cookie-parser": "~1.4.4",
     "cross-env": "^7.0.2",
     "debug": "~2.6.9",

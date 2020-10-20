@@ -1,6 +1,7 @@
 'use strict';
 
 const Usuario = require('../models/Usuario');
+const bcrypt = require('bcrypt');
 
 class LoginController {
 
@@ -28,7 +29,7 @@ class LoginController {
 
       // si no existe el usuario o la password no coincide
       // mostrar un error
-      if (!usuario || usuario.password !== password) {
+      if (!usuario || !(await bcrypt.compare(password, usuario.password )) ) {
         res.locals.error = res.__('Invalid credentials');
         res.locals.email = email;
         res.render('login');
