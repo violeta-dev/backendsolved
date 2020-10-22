@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const nodemailer = require('nodemailer');
+const nodemailerTransport = require('../lib/nodemailerConfigure');
 
 const usuarioSchema = mongoose.Schema({
   email: { type: String, unique: true },
@@ -14,17 +14,8 @@ usuarioSchema.statics.hashPassword = function(passwordEnClaro) {
 }
 
 usuarioSchema.methods.sendMail = function(from, subject, body) {
-  // crear un transport
-  const transport = nodemailer.createTransport({
-    service: process.env.EMAIL_SERVICE,
-    auth: {
-      user: process.env.EMAIL_SERVICE_USER,
-      pass: process.env.EMAIL_SERVICE_PASS
-    }
-  });
-
   // enviar el correo
-  return transport.sendMail({
+  return nodemailerTransport.sendMail({
     from: from,
     to: this.email,
     subject: subject,
