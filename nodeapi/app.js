@@ -3,8 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+const sessionConfigure = require('./lib/sessionConfigure');
 
 var app = express();
 
@@ -62,19 +61,7 @@ const sessionAuth = require('./lib/sessionAuth');
  * Inicializamos el sistema de sesiones
  * con el middleware que me deja la sesión del usuario cargada en req.session
  */
-app.use(session({
-  name: 'nodeapi-session',
-  secret: process.env.SESSION_SECRET,
-  saveUninitialized: true,
-  resave: false,
-  cookie: {
-    secure: true, // el browser solo la manda al servidor si usa HTTPS
-    maxAge: 1000 * 60 * 60 * 24 * 2 // 2 dias de caducidad por inactividad
-  },
-  store: new MongoStore({
-    mongooseConnection: mongoConnection
-  })
-}));
+app.use(sessionConfigure(mongoConnection));
 
 // hacer disponible el objeto de sesión en todas las vistas
 app.use((req, res, next) => {
