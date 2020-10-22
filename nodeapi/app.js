@@ -4,11 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 var app = express();
 
 // conectar a la base de datos
-require('./lib/connectMongoose');
+const mongoConnection = require('./lib/connectMongoose');
 
 // lo probamos
 // i18n.setLocale('es');
@@ -43,15 +44,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 const i18n = require('./lib/i18nConfigure');
 app.use(i18n.init); // metemos un middleware a express
 
+
 /**
  * Rutas del API
  */
 app.use('/api/agentes', require('./routes/api/agentes'));
 
+
 /**
  * Rutas del website
  */
-
 const loginController   = require('./routes/loginController');
 const privadoController = require('./routes/privadoController');
 const sessionAuth = require('./lib/sessionAuth');
@@ -68,7 +70,10 @@ app.use(session({
   cookie: {
     secure: true, // el browser solo la manda al servidor si usa HTTPS
     maxAge: 1000 * 60 * 60 * 24 * 2 // 2 dias de caducidad por inactividad
-  }
+  },
+  store: new MongoStore({
+    mongooseConnection: mongoConnection
+  })
 }));
 
 // hacer disponible el objeto de sesión en todas las vistas
