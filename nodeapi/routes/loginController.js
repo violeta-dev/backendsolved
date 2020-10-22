@@ -37,6 +37,13 @@ class LoginController {
       }
 
       // si el usuario existe y la password es correcta
+
+      // apuntar el _id del usuario en su sessión
+      req.session.authUser = {
+        _id: usuario._id,
+        // rol: ...
+      };
+
       // redirigir a zona privada
       res.redirect('/privado');
 

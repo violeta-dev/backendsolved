@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
 
 var app = express();
 
@@ -43,11 +44,31 @@ const i18n = require('./lib/i18nConfigure');
 app.use(i18n.init); // metemos un middleware a express
 
 /**
+ * Rutas del API
+ */
+app.use('/api/agentes', require('./routes/api/agentes'));
+
+/**
  * Rutas del website
  */
 
 const loginController   = require('./routes/loginController');
 const privadoController = require('./routes/privadoController');
+
+/**
+ * Inicializamos el sistema de sesiones
+ * con el middleware que me deja la sesión del usuario cargada en req.session
+ */
+app.use(session({
+  name: 'nodeapi-session',
+  secret: '=&enkwC>-Q%v4&V$=TNex%&',
+  saveUninitialized: true,
+  resave: false,
+  cookie: {
+    secure: true, // el browser solo la manda al servidor si usa HTTPS
+    maxAge: 1000 * 60 * 60 * 24 * 2 // 2 dias de caducidad por inactividad
+  }
+}));
 
 app.use('/',              require('./routes/index'));
 app.use('/services',      require('./routes/services'));
@@ -57,11 +78,6 @@ app.use('/users',         require('./routes/users'));
 app.get('/login',         loginController.index);
 app.post('/login',        loginController.post);
 app.get('/privado',       privadoController.index);
-
-/**
- * Rutas del API
- */
-app.use('/api/agentes', require('./routes/api/agentes'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
