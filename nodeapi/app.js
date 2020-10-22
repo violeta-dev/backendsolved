@@ -64,7 +64,7 @@ const sessionAuth = require('./lib/sessionAuth');
  */
 app.use(session({
   name: 'nodeapi-session',
-  secret: '=&enkwC>-Q%v4&V$=TNex%&',
+  secret: process.env.SESSION_SECRET,
   saveUninitialized: true,
   resave: false,
   cookie: {
