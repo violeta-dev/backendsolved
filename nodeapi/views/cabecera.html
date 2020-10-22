@@ -49,15 +49,21 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/"><%= __('Home') %></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/services"><%= __('Services') %></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#features"><%= __('Features') %></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/login"><%= __('Login') %></a>
-          </li>
+          <% if (!session.authUser) { %>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/login"><%= __('Login') %></a>
+            </li>
+          <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/services"><%= __('Services') %></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/privado"><%= __('Private') %></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/logout"><%= __('Logout') %></a>
+            </li>
+          <% } %>
         </ul>
       </div>
     </div>

@@ -71,14 +71,21 @@ app.use(session({
   }
 }));
 
+// hacer disponible el objeto de sesión en todas las vistas
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next();
+})
+
 app.use('/',              require('./routes/index'));
-app.use('/services',      require('./routes/services'));
 app.use('/change-locale', require('./routes/change-locale'));
 app.use('/users',         require('./routes/users'));
 // en los siguientes usamos la estructura de controladores
 app.get('/login',         loginController.index);
 app.post('/login',        loginController.post);
-app.get('/privado', sessionAuth(), privadoController.index);
+app.get('/logout',        loginController.logout)
+app.use('/services', sessionAuth(),   require('./routes/services'));
+app.get('/privado', sessionAuth(),    privadoController.index);
 app.get('/admin', sessionAuth({ roles: ['admin'] }), privadoController.index);
 
 // catch 404 and forward to error handler
