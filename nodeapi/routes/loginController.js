@@ -48,6 +48,8 @@ class LoginController {
       // expresamente no ponemos await para no esperar a que se mande el email antes de redirigir
       // usuario.sendMail(process.env.ADMIN_EMAIL, 'Bienvenido a NodeApi', `Hola <%= nombre %>`);
 
+      await usuario.enqueueNewEmail(process.env.ADMIN_EMAIL, 'Bienvenido a NodeApi', `Hola <%= nombre %>`);
+
       // redirigir a zona privada
       res.redirect('/privado');
 
