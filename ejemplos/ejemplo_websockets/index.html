@@ -26,7 +26,24 @@
 
     <script>
       $(function () {
-        console.log('hola');
+        const socket = io();
+
+        // enviamos mensajes al servidor
+        $('form').submit(() => {
+          socket.emit('nuevo-mensaje', $('#m').val());
+          $('#m').val(''); // vaciamos caja de texo
+          return false;
+        });
+
+        // recogemos mensajes recibidos desde el servidor
+        socket.on('mensaje-chat', data => {
+          // añadir el mensaje a la lista
+          $('#messages').append($('<li>').text(data));
+        });
+
+        socket.on('pasa-un-segundo', data => {
+          console.log('el servidor dice que ha pasado un segundo');
+        });
       });
     </script>
   </body>
