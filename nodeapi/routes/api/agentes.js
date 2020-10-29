@@ -19,6 +19,8 @@ const upload = multer({ storage: storage });
 router.get('/', async function(req, res, next) {
   try {
 
+    console.log('El usuario logado tiene el _id:', req.apiAuthUserId);
+
     // http://localhost:3000/api/agentes?name=Smith
     const name = req.query.name;
     // http://localhost:3000/api/agentes?age=36

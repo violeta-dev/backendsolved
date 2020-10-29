@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const sessionConfigure = require('./lib/sessionConfigure');
+const loginController   = require('./routes/loginController');
+const privadoController = require('./routes/privadoController');
+const jwtAuth = require('./lib/jwtAuth');
 
 var app = express();
 
@@ -47,14 +50,13 @@ app.use(i18n.init); // metemos un middleware a express
 /**
  * Rutas del API
  */
-app.use('/api/agentes', require('./routes/api/agentes'));
+app.post('/api/loginJWT', loginController.postJWT);
+app.use('/api/agentes', jwtAuth(), require('./routes/api/agentes'));
 
 
 /**
  * Rutas del website
  */
-const loginController   = require('./routes/loginController');
-const privadoController = require('./routes/privadoController');
 const sessionAuth = require('./lib/sessionAuth');
 const basicAuth = require('./lib/basicAuth');
 
