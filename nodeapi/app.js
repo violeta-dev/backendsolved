@@ -56,6 +56,7 @@ app.use('/api/agentes', require('./routes/api/agentes'));
 const loginController   = require('./routes/loginController');
 const privadoController = require('./routes/privadoController');
 const sessionAuth = require('./lib/sessionAuth');
+const basicAuth = require('./lib/basicAuth');
 
 /**
  * Inicializamos el sistema de sesiones
@@ -76,8 +77,8 @@ app.use('/users',         require('./routes/users'));
 app.get('/login',         loginController.index);
 app.post('/login',        loginController.post);
 app.get('/logout',        loginController.logout)
-app.use('/services', sessionAuth(),   require('./routes/services'));
-app.get('/privado', sessionAuth(),    privadoController.index);
+app.use('/services', basicAuth(),   require('./routes/services'));
+app.get('/privado', sessionAuth(),  privadoController.index);
 app.get('/admin', sessionAuth({ roles: ['admin'] }), privadoController.index);
 
 // catch 404 and forward to error handler
