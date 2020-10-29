@@ -67,7 +67,7 @@ app.use(sessionConfigure(mongoConnection));
 app.use((req, res, next) => {
   res.locals.session = req.session;
   next();
-})
+});
 
 app.use('/',              require('./routes/index'));
 app.use('/change-locale', require('./routes/change-locale'));
